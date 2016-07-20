@@ -191,16 +191,30 @@ class ItemViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
 
     
     @IBAction func backButton(sender: AnyObject) {
-        let profileViewController: UIViewController = self.storyboard!.instantiateViewControllerWithIdentifier("profile")
-        let transition = CATransition()
-        transition.duration = 0.3
-        transition.type = kCATransitionMoveIn
-        transition.subtype = kCATransitionFromBottom
-        view.window!.layer.addAnimation(transition, forKey: kCATransition)
-        self.presentViewController(profileViewController, animated: false, completion: nil)
+        
+        performSegueWithIdentifier("goBack", sender: self)
 
     }
     
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "goBack" {
+            
+            let destinationVC = segue.destinationViewController as! ProfileViewController
+            
+            let transition = CATransition()
+            transition.duration = 0.3
+            transition.type = kCATransitionMoveIn
+            transition.subtype = kCATransitionFromBottom
+            view.window!.layer.addAnimation(transition, forKey: kCATransition)
+        
+            
+            destinationVC.userID = self.userID
+            destinationVC.otherUser = self.otherUser
+        
+        }
+
+    }
     
     @IBAction func deleteItem(sender: AnyObject) {
         

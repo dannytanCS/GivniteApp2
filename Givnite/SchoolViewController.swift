@@ -26,7 +26,12 @@ class SchoolViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var schoolButton: UIButton!
     
+    @IBOutlet weak var betaButton: UIButton!
     
+    @IBAction func betaButtonPushed(sender: AnyObject) {
+        let user = FIRAuth.auth()?.currentUser
+        dataRef.child("user").child(user!.uid).child("school").setValue("Beta School")
+    }
     // NYU
     @IBOutlet weak var NYUButton: UIButton!
     
@@ -36,6 +41,7 @@ class SchoolViewController: UIViewController, UITextFieldDelegate {
                 self.NYUButton.setImage(UIImage(named: "NYU Black Logo"), forState: .Normal)
                 NYUClicked = false
                 self.schoolButton.hidden = true
+                betaButton.hidden = false
             }
             else{
                 self.schoolButton.setTitle("New York University", forState: .Normal)
@@ -45,6 +51,7 @@ class SchoolViewController: UIViewController, UITextFieldDelegate {
                 let user = FIRAuth.auth()?.currentUser
                 dataRef.child("user").child("\(user!.uid)/school").setValue(schoolName)
                 self.schoolButton.hidden = false
+                betaButton.hidden = true
     
             }
         }
@@ -59,6 +66,7 @@ class SchoolViewController: UIViewController, UITextFieldDelegate {
                 self.CooperButton.setImage(UIImage(named: "CU Black Logo"), forState: .Normal)
                 CooperClicked = false
                  self.schoolButton.hidden = true
+                  betaButton.hidden = true
             }
             else{
                 self.schoolButton.setTitle("Cooper Union", forState: .Normal)
@@ -68,6 +76,7 @@ class SchoolViewController: UIViewController, UITextFieldDelegate {
                 let user = FIRAuth.auth()?.currentUser
                 dataRef.child("user").child("\(user!.uid)/school").setValue(schoolName)
                 self.schoolButton.hidden = false
+                betaButton.hidden = false
             }
         }
 
@@ -83,6 +92,7 @@ class SchoolViewController: UIViewController, UITextFieldDelegate {
                 self.TheNewSchoolButton.setImage(UIImage(named: "The New School Black Logo"), forState: .Normal)
                 TheNewSchoolClicked = false
                  self.schoolButton.hidden = true
+                  betaButton.hidden = false
             }
             else{
                 self.schoolButton.setTitle("The New School", forState: .Normal)
@@ -92,6 +102,7 @@ class SchoolViewController: UIViewController, UITextFieldDelegate {
                 let user = FIRAuth.auth()?.currentUser
                 dataRef.child("user").child("\(user!.uid)/school").setValue(schoolName)
                 self.schoolButton.hidden = false
+                betaButton.hidden = true
             
               
             }
@@ -109,6 +120,7 @@ class SchoolViewController: UIViewController, UITextFieldDelegate {
                 self.BaruchButton.setImage(UIImage(named: "Baruch Black Logo"), forState: .Normal)
                 BaruchClicked = false
                 self.schoolButton.hidden = true
+                  betaButton.hidden = false
             }
             else{
                 self.schoolButton.setTitle("Baruch College", forState: .Normal)
@@ -118,6 +130,7 @@ class SchoolViewController: UIViewController, UITextFieldDelegate {
                 let user = FIRAuth.auth()?.currentUser
                 dataRef.child("user").child("\(user!.uid)/school").setValue(schoolName)
                 self.schoolButton.hidden = false
+                betaButton.hidden = true
             }
         }
 
@@ -134,6 +147,7 @@ class SchoolViewController: UIViewController, UITextFieldDelegate {
                 self.FITButton.setImage(UIImage(named: "FIT Black Logo"), forState: .Normal)
                 FITClicked = false
                 self.schoolButton.hidden = true
+                  betaButton.hidden = false
             }
             else{
                 self.schoolButton.setTitle("Fashion Institute of Technology", forState: .Normal)
@@ -143,6 +157,7 @@ class SchoolViewController: UIViewController, UITextFieldDelegate {
                 let user = FIRAuth.auth()?.currentUser
                 dataRef.child("user").child("\(user!.uid)/school").setValue(schoolName)
                 self.schoolButton.hidden = false
+                betaButton.hidden = true
                
             }
         }
@@ -160,6 +175,7 @@ class SchoolViewController: UIViewController, UITextFieldDelegate {
                 self.SVAButton.setImage(UIImage(named: "SVA Black Logo"), forState: .Normal)
                 SVAClicked = false
                 self.schoolButton.hidden = true
+                  betaButton.hidden = false
             }
             else{
                 self.schoolButton.setTitle("School of Visual Arts", forState: .Normal)
@@ -169,6 +185,7 @@ class SchoolViewController: UIViewController, UITextFieldDelegate {
                 let user = FIRAuth.auth()?.currentUser
                 dataRef.child("user").child("\(user!.uid)/school").setValue(schoolName)
                 self.schoolButton.hidden = false
+                betaButton.hidden = true
             }
         }
 

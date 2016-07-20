@@ -248,6 +248,14 @@
                                     <constraint firstAttribute="width" constant="111" id="KJq-kM-wDP"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7x3-AH-kLg">
+                                <rect key="frame" x="55" y="617" width="231" height="30"/>
+                                <state key="normal" title="Beta School"/>
+                                <connections>
+                                    <action selector="betaButtonPushed:" destination="UMB-q2-GAw" eventType="touchUpInside" id="Q25-Oi-Ar1"/>
+                                    <segue destination="r0Y-cm-aOR" kind="modal" id="7xW-Nq-ycU"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.31446697689999997" blue="0.3323876758" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -277,6 +285,7 @@
                         <outlet property="NYUButton" destination="UHm-Z8-1HV" id="7zw-d6-PUp"/>
                         <outlet property="SVAButton" destination="v7u-bz-bCc" id="Hue-Ef-QyD"/>
                         <outlet property="TheNewSchoolButton" destination="YKn-re-thd" id="N2R-UP-oFI"/>
+                        <outlet property="betaButton" destination="7x3-AH-kLg" id="E7J-ME-FGY"/>
                         <outlet property="schoolButton" destination="51P-Y3-OaY" id="FAX-Jn-kny"/>
                     </connections>
                 </viewController>
@@ -940,6 +949,7 @@
                                 <state key="normal" title="Back" image="Back Button"/>
                                 <connections>
                                     <action selector="backButton:" destination="jcF-Ad-o52" eventType="touchUpInside" id="S4D-dp-wVw"/>
+                                    <segue destination="WKj-cM-742" kind="modal" identifier="goBack" animates="NO" id="4Fk-YX-ieg"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Twc-MH-p2u">
@@ -1087,7 +1097,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jiM-eu-O0r" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1865.5" y="1452.5"/>
+            <point key="canvasLocation" x="1754.5" y="1452.5"/>
         </scene>
         <!--Description View Controller-->
         <scene sceneID="ZJm-Fb-S4B">
@@ -1472,6 +1482,7 @@
         <image name="Trash" width="81" height="84"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="VtU-44-gMG"/>
+        <segue reference="4Fk-YX-ieg"/>
+        <segue reference="Mgg-ae-R6I"/>
     </inferredMetricsTieBreakers>
 </document>
