@@ -869,7 +869,7 @@
                         <outlet property="collectionView" destination="jiq-Ob-Tbp" id="Ad4-Xl-Fv7"/>
                         <outlet property="searchBarText" destination="9Xl-1B-9dB" id="F4F-hB-Tmm"/>
                         <segue destination="Tnf-I5-fWN" kind="modal" identifier="marketEnlarge" id="YfD-1C-9gm"/>
-                        <segue destination="WKj-cM-742" kind="modal" identifier="showProfile" id="VtU-44-gMG"/>
+                        <segue destination="WKj-cM-742" kind="modal" identifier="showProfile" animates="NO" id="VtU-44-gMG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z97-nz-WR3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1326,7 +1326,7 @@
                                 <state key="normal" title="Back" image="Back Button"/>
                                 <connections>
                                     <action selector="backButton:" destination="Tnf-I5-fWN" eventType="touchUpInside" id="GTt-Vj-8qG"/>
-                                    <segue destination="sEY-U2-bM3" kind="modal" identifier="goBack" id="qG4-99-uBB"/>
+                                    <segue destination="sEY-U2-bM3" kind="modal" identifier="goBack" animates="NO" id="qG4-99-uBB"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="O3z-Oe-tId">

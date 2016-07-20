@@ -218,6 +218,12 @@ class MarketItemViewController: UIViewController {
         if segue.identifier == "goBack" {
             let destinationVC = segue.destinationViewController as! MarketplaceViewController
             
+            let transition = CATransition()
+            transition.duration = 0.3
+            transition.type = kCATransitionPush
+            transition.subtype = kCATransitionFromBottom
+            view.window!.layer.addAnimation(transition, forKey: kCATransition)
+            
             destinationVC.firstTimeUse = self.firstTimeUsed!
           
             

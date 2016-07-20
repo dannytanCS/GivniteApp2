@@ -423,7 +423,16 @@ class MarketplaceViewController: UIViewController, UICollectionViewDelegate, UIC
         
         if segue.identifier == "showProfile" {
             let destinationVC = segue.destinationViewController as! ProfileViewController
-        
+            
+            
+            let transition = CATransition()
+            transition.duration = 0.3
+            transition.type = kCATransitionFade
+            transition.subtype = kCATransitionFromLeft
+            view.window!.layer.addAnimation(transition, forKey: kCATransition)
+
+            
+            
             destinationVC.userID = self.userID
         
             destinationVC.otherUser = true
