@@ -19,6 +19,7 @@ class MarketItemViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var sellerName: UILabel!
+    @IBOutlet weak var messageButton: UIButton!
     
     let storageRef = FIRStorage.storage().referenceForURL("gs://givniteapp.appspot.com")
     let databaseRef = FIRDatabase.database().referenceFromURL("https://givniteapp.firebaseio.com/")
@@ -52,6 +53,11 @@ class MarketItemViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        if user?.uid == userID {
+            messageButton.hidden = true
+        }
         
         self.imageView.image = self.image
         self.imageView.layer.cornerRadius = 10

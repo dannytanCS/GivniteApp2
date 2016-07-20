@@ -57,6 +57,7 @@ class ItemViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
     
     var userName: String?
     var otherUser: Bool = false
+    var userID: String?
     
     
     
@@ -79,11 +80,15 @@ class ItemViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
         self.bookDescription.delegate = self
         self.messageButton.hidden = true
         
+        
         if otherUser {
             settingButton.hidden = true
             cameraButton.hidden = true
             deleteButton.hidden = true
             messageButton.hidden = false
+            if user!.uid == userID {
+                self.messageButton.hidden = true
+            }
         }
      
         

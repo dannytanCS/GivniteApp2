@@ -1437,6 +1437,7 @@
                         <outlet property="bookName" destination="9z7-5X-Bho" id="Ldf-XF-nVa"/>
                         <outlet property="bookPrice" destination="ipS-LB-qwy" id="TzK-z1-0pk"/>
                         <outlet property="imageView" destination="78V-b6-JGw" id="i8W-Jd-Zo2"/>
+                        <outlet property="messageButton" destination="rKm-p3-FHc" id="VkK-qm-BsC"/>
                         <outlet property="pageControl" destination="Avh-1M-Vks" id="Lrw-0W-bdI"/>
                         <outlet property="sellerName" destination="5gs-Dx-HK3" id="ocg-RU-h5U"/>
                     </connections>

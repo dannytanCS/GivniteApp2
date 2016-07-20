@@ -244,6 +244,8 @@ class ProfileViewController: UIViewController, UITextViewDelegate,UICollectionVi
             destinationVC.userName = self.name.text!
             
             destinationVC.otherUser = self.otherUser.boolValue
+            
+            destinationVC.userID = self.userID
         }
     }
     
