@@ -310,7 +310,8 @@ class MarketplaceViewController: UIViewController, UICollectionViewDelegate, UIC
                                 self.userImageCache[imageName] = imageToCache
                                 dispatch_async(dispatch_get_main_queue(),{
                                     cell.profileImageButton.setImage(imageToCache!, forState: .Normal)
-                                    cell.profileImageButton.layer.cornerRadius =  cell.profileImageButton.bounds.size.width/2;
+                                    cell.profileImageButton.layer.cornerRadius =  cell.profileImageButton.bounds.size.width/2
+                                    cell.profileImageButton.clipsToBounds = true
 
                                 })
                             
