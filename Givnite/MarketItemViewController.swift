@@ -76,7 +76,6 @@ class MarketItemViewController: UIViewController {
         self.imageView.layer.cornerRadius = 10
         self.imageView.clipsToBounds = true
         //self.imageView.layer.borderWidth = 2
-        
         //self.imageView.layer.borderColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1.0).CGColor
 
         self.bookName.text = self.name
@@ -92,8 +91,7 @@ class MarketItemViewController: UIViewController {
                 self.sellerName.text = userName
             }
         })
-    
-        
+
         databaseRef.child("marketplace").child(imageName!).observeSingleEventOfType(.Value, withBlock: { (snapshot)
             in
             
@@ -208,24 +206,11 @@ class MarketItemViewController: UIViewController {
                     self.pageControl.currentPage = 0
                     
                 }
-                
-                
-                
-                
                 imageView.image = imageList[imageIndex]
-                
-                
-                
-                
             default:
                 break //stops the code/codes nothing.
-                
-                
             }
-            
         }
-        
-        
     }
     
     @IBAction func backButton(sender: AnyObject) {
@@ -243,19 +228,10 @@ class MarketItemViewController: UIViewController {
             view.window!.layer.addAnimation(transition, forKey: kCATransition)
             
             destinationVC.firstTimeUse = self.firstTimeUsed!
-          
-            
             destinationVC.imageNameArray = self.imageNameArray
-            
             destinationVC.userArray = self.userArray
-            
-
         }
-        
     }
-    
-
-    
 }
 
 

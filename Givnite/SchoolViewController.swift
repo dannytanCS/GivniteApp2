@@ -23,9 +23,11 @@ class SchoolViewController: UIViewController, UITextFieldDelegate {
     var BaruchClicked : Bool = false
     var FITClicked : Bool = false
     var SVAClicked : Bool = false
+
+    
+    
     
     @IBOutlet weak var schoolButton: UIButton!
-    
     @IBOutlet weak var betaButton: UIButton!
     
     @IBAction func betaButtonPushed(sender: AnyObject) {
@@ -66,7 +68,7 @@ class SchoolViewController: UIViewController, UITextFieldDelegate {
                 self.CooperButton.setImage(UIImage(named: "CU Black Logo"), forState: .Normal)
                 CooperClicked = false
                  self.schoolButton.hidden = true
-                  betaButton.hidden = true
+                  betaButton.hidden = false
             }
             else{
                 self.schoolButton.setTitle("Cooper Union", forState: .Normal)
@@ -76,7 +78,7 @@ class SchoolViewController: UIViewController, UITextFieldDelegate {
                 let user = FIRAuth.auth()?.currentUser
                 dataRef.child("user").child("\(user!.uid)/school").setValue(schoolName)
                 self.schoolButton.hidden = false
-                betaButton.hidden = false
+                betaButton.hidden = true
             }
         }
 
@@ -139,7 +141,7 @@ class SchoolViewController: UIViewController, UITextFieldDelegate {
     
     //FIT
     
-    @IBOutlet weak var FITButton: UIButton!
+    @IBOutlet weak var FITButton: SpringButton!
     
     @IBAction func FITClicked(sender: AnyObject) {
         if (NYUClicked || TheNewSchoolClicked || BaruchClicked || CooperClicked || SVAClicked) == false  {
@@ -249,14 +251,9 @@ class SchoolViewController: UIViewController, UITextFieldDelegate {
     }
     
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
 
-    
-    
+
     
     /*
     // MARK: - Navigation

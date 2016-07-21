@@ -11,13 +11,8 @@ import UIKit
 class MarketCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var itemImageView: UIImageView!
-
-    
     @IBOutlet weak var profileImageButton: UIButton!
-    
-    
     @IBOutlet weak var bookName: UILabel!
-
     @IBOutlet weak var bookPrice: UILabel!
     
 }

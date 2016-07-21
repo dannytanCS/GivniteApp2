@@ -15,16 +15,14 @@ class MarketplaceViewController: UIViewController, UICollectionViewDelegate, UIC
 
 
     @IBOutlet weak var collectionView: UICollectionView!
-    
     @IBOutlet weak var searchBarText: UISearchBar!
     
+
   
 
     let storageRef = FIRStorage.storage().referenceForURL("gs://givniteapp.appspot.com")
     let dataRef = FIRDatabase.database().referenceFromURL("https://givniteapp.firebaseio.com/")
-    
     let user = FIRAuth.auth()?.currentUser
-    
     var imageNameArray = [String]()
     var imageArray = [UIImage]()
     
@@ -154,8 +152,6 @@ class MarketplaceViewController: UIViewController, UICollectionViewDelegate, UIC
                             }
                         }
                     }
-                    
-                    
                     timeArray = timeArray.sort().reverse()
                     
                     
@@ -168,7 +164,6 @@ class MarketplaceViewController: UIViewController, UICollectionViewDelegate, UIC
                                         if let bookName = keyDictionary["book name"] as? String {
                                             self.bookNameArray.append(bookName)
                                         }
-                                        
                                         else {
                                             self.bookNameArray.append("")
                                         }
@@ -224,12 +219,6 @@ class MarketplaceViewController: UIViewController, UICollectionViewDelegate, UIC
             for index in 0..<self.imageNameArray.count {
                 self.imageArray.append(UIImage(named: "Examples")!)
             }
-        
-                
-            
-        
-                
-            
             dispatch_async(dispatch_get_main_queue(),{
                 self.collectionView.reloadData()
             })
@@ -299,6 +288,7 @@ class MarketplaceViewController: UIViewController, UICollectionViewDelegate, UIC
             
             if let userImage = userImageCache[imageName] {
                 cell.profileImageButton.setImage(userImage, forState: .Normal)
+                
             }
 
             else {
@@ -320,6 +310,8 @@ class MarketplaceViewController: UIViewController, UICollectionViewDelegate, UIC
                                 self.userImageCache[imageName] = imageToCache
                                 dispatch_async(dispatch_get_main_queue(),{
                                     cell.profileImageButton.setImage(imageToCache!, forState: .Normal)
+                                    cell.profileImageButton.layer.cornerRadius =  cell.profileImageButton.bounds.size.width/2;
+
                                 })
                             
                             }
@@ -327,10 +319,6 @@ class MarketplaceViewController: UIViewController, UICollectionViewDelegate, UIC
                     }.resume()
                 }
             }
- 
- 
-
-            
             if let bookName = bookCache[imageName] {
                 cell.bookName.text = bookName
             

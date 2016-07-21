@@ -54,11 +54,11 @@ class ProfileViewController: UIViewController, UITextViewDelegate,UICollectionVi
     
     func timefunc()
     {
-        addButton.animation = "shake"
+        addButton.animation = "pop"
         addButton.curve = "easeIn"
-        addButton.duration = 0.3
-        addButton.x = 0.2
-        addButton.force = 0.1
+        addButton.duration = 1.0
+        addButton.x = 0
+        addButton.force = 0.5
         addButton.velocity = 0.1
         addButton.damping = 1
         addButton.animate()
@@ -79,7 +79,7 @@ class ProfileViewController: UIViewController, UITextViewDelegate,UICollectionVi
         }
     
         super.viewDidLoad()
-        var timer = NSTimer.scheduledTimerWithTimeInterval(3, target: self, selector: #selector(ItemViewController.timefunc), userInfo: nil, repeats: true)
+        var timer = NSTimer.scheduledTimerWithTimeInterval(4, target: self, selector: #selector(ItemViewController.timefunc), userInfo: nil, repeats: true)
         self.view.sendSubviewToBack(secondView)
         self.view.bringSubviewToFront(name)
         self.view.bringSubviewToFront(addButton)

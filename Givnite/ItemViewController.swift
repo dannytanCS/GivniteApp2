@@ -16,27 +16,18 @@ class ItemViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
     @IBOutlet weak var imageView: UIImageView!
     
     var image = UIImage()
-    
+
         
     var imageName:String?
-    
-    
     var imageDict = [UIImage:AnyObject]()
-    
     var imageList = [UIImage]()
-    
     var imageNameList = [String]()
-    
     var imageIndex: Int = 0
-    
     var maxImages: Int = 0
     
     @IBOutlet weak var userNameLabel: UILabel!
-  
     @IBOutlet weak var bookName: UITextField!
     @IBOutlet weak var bookPrice: UITextField!
-
-    
     @IBOutlet weak var bookDescription: UITextView!
     
     let databaseRef = FIRDatabase.database().referenceFromURL("https://givniteapp.firebaseio.com/")
@@ -45,13 +36,8 @@ class ItemViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
     
     
     @IBOutlet weak var pageControl: UIPageControl!
-
     @IBOutlet weak var cameraButton: UIButton!
-    
     @IBOutlet weak var deleteButton: UIButton!
-    
-    
-    
     @IBOutlet weak var btnbtn: SpringButton!
     
     var userName: String?
@@ -70,9 +56,8 @@ class ItemViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
         super.viewDidLoad()
         var timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(ItemViewController.timefunc), userInfo: nil, repeats: true)
         
-
         self.userNameLabel.text = userName
-    
+
         self.bookDescription.editable = false
         self.bookPrice.userInteractionEnabled = false
         self.bookName.userInteractionEnabled = false
@@ -299,22 +284,11 @@ class ItemViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
                  self.pageControl.currentPage += 1
                 
                 // check if index is in range
-                
-                
                 if imageIndex > maxImages {
-                    
                     imageIndex = 0
                     self.pageControl.currentPage = 0
-                    
                 }
-                
-
-                
                 imageView.image = imageList[imageIndex]
-            
-                
-                
-                
             default:
                 break //stops the code/codes nothing.
                 
@@ -500,9 +474,6 @@ class ItemViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
             self.view.frame.origin.y += keyboardSize.height - offset.height
         }
     }
-
-
-    
 
     /*
     // MARK: - Navigation
