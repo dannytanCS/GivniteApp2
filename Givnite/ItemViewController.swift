@@ -126,39 +126,47 @@ class ItemViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
                     for image in itemDictionary {
                     
                         let imagename = image.key
+                        print(imagename)
+                        
+                        if let imageCache = NSCache.sharedInstance.objectForKey(imagename) as? UIImage {
+                            print(imageCache)
+                            self.imageDict[imageCache] = image.value
+                        }
                     
-                        let profilePicRef = self.storageRef.child(self.imageName!).child("\(imagename).jpg")
-                        //sets the image on profile
-                        profilePicRef.dataWithMaxSize(1 * 1024 * 1024) { (data, error) -> Void in
-                            if (error != nil) {
-                                print ("File does not exist")
-                                return
-                            } else {
-                                if (data != nil){
-                                
-                                    self.imageDict[UIImage(data:data!)!] = image.value
+                        else {
+                            let profilePicRef = self.storageRef.child(self.imageName!).child("\(imagename).jpg")
+                            //sets the image on profile
+                            profilePicRef.dataWithMaxSize(1 * 1024 * 1024) { (data, error) -> Void in
+                                if (error != nil) {
+                                    print ("File does not exist")
+                                    return
+                                } else {
+                                    if (data != nil){
+                                        var imageToCache = UIImage(data:data!)
+                                        NSCache.sharedInstance.setObject(imageToCache!, forKey: imagename)
+                                        self.imageDict[imageToCache!] = image.value
+                                        
+                                    }
                                 }
                             }
-                        
-                            //change image dictionary into sorted image array
-                            var sortedTuples = self.imageDict.sort({ (a, b) in (a.1 as! Double) < (b.1 as! Double) })
-                        
-                            for tuple in sortedTuples {
-                                if sortedTuples.count == self.imageNameList.count {
-                                    self.imageList.append(tuple.0)
-                                }
-                            }
-                        
-                            self.maxImages  = self.imageList.count - 1
-                            self.pageControl.currentPage = 0
-                            self.pageControl.numberOfPages = self.maxImages + 1
                         }
                         
+                        //change image dictionary into sorted image array
+                        var sortedTuples = self.imageDict.sort({ (a, b) in (a.1 as! Double) < (b.1 as! Double) })
+                        
+                        for tuple in sortedTuples {
+                            if sortedTuples.count == self.imageNameList.count {
+                                self.imageList.append(tuple.0)
+                            }
+                        }
                     }
+                    
+                    
+                    self.maxImages  = self.imageList.count - 1
+                    self.pageControl.currentPage = 0
+                    self.pageControl.numberOfPages = self.maxImages + 1
                 }
-                
             })
-            
         }
         
         

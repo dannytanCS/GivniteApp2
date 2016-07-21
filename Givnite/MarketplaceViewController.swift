@@ -35,15 +35,16 @@ class MarketplaceViewController: UIViewController, UICollectionViewDelegate, UIC
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadImages()
         if self.firstTimeUse == true {
             self.imageNameArray.removeAll()
-            self.userArray.removeAll()
         }
+        self.userArray.removeAll()
         self.imageArray.removeAll()
         self.bookNameArray.removeAll()
         self.bookPriceArray.removeAll()
         self.descriptionArray.removeAll()
+        
+        loadImages()
         var swipeLeft = UISwipeGestureRecognizer(target: self, action: "swiped:") // put : at the end of method name
         swipeLeft.direction = UISwipeGestureRecognizerDirection.Left
         self.view.addGestureRecognizer(swipeLeft)
@@ -53,6 +54,12 @@ class MarketplaceViewController: UIViewController, UICollectionViewDelegate, UIC
     }
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        if (searchText.characters.count == 0) {
+            searchBar.performSelector("resignFirstResponder", withObject: nil, afterDelay: 0.1)
+            self.firstTimeUse = true
+            viewDidLoad()
+        }
+        
     }
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
@@ -69,9 +76,7 @@ class MarketplaceViewController: UIViewController, UICollectionViewDelegate, UIC
             in
             
             if let topSearches = snapshot.value! as? NSArray {
-                self.imageCache.removeAll()
                 self.imageNameArray.removeAll()
-                self.userArray.removeAll()
                 for imageName in topSearches {
                     self.imageNameArray.append(imageName as! String)
                 }
@@ -233,11 +238,6 @@ class MarketplaceViewController: UIViewController, UICollectionViewDelegate, UIC
     }
     
     
-    
-    var imageCache = [String:UIImage] ()
-    
-    var userImageCache = [String:UIImage] ()
-    
     var priceCache = [String:String]()
     
     var bookCache = [String:String]()
@@ -256,9 +256,9 @@ class MarketplaceViewController: UIViewController, UICollectionViewDelegate, UIC
             cell.itemImageView.image = nil
             
            
-            if let image = imageCache[imageName]  {
+            if let image = NSCache.sharedInstance.objectForKey(imageName) as? UIImage {
                 cell.itemImageView.image = image
-                
+                self.imageArray[indexPath.row] = image
             }
                 
             else {
@@ -272,7 +272,7 @@ class MarketplaceViewController: UIViewController, UICollectionViewDelegate, UIC
                     } else {
                         if (data != nil){
                             let imageToCache = UIImage(data:data!)
-                            self.imageCache[imageName] = imageToCache
+                            NSCache.sharedInstance.setObject(imageToCache!, forKey: imageName)
                             dispatch_async(dispatch_get_main_queue(),{
                                 cell.itemImageView.image = imageToCache
                                 self.imageArray[indexPath.row] = imageToCache!
@@ -285,16 +285,21 @@ class MarketplaceViewController: UIViewController, UICollectionViewDelegate, UIC
             }
  
         
-            
-            if let userImage = userImageCache[imageName] {
-                cell.profileImageButton.setImage(userImage, forState: .Normal)
-                
-            }
+            if userArray.count > indexPath.row {
+             
+                let userID = userArray[indexPath.row]
+                cell.profileImageButton.layer.cornerRadius =  cell.profileImageButton.bounds.size.width/2
+                cell.profileImageButton.clipsToBounds = true
 
-            else {
             
-                if userArray.count > 0 {
-                    let userID = userArray[indexPath.row]
+                if let userImage = NSCache.sharedInstance.objectForKey(userID) as? UIImage {
+                    
+                    cell.profileImageButton.setImage(userImage, forState: .Normal)
+                }
+
+                else {
+            
+              
                     var profilePicRef = storageRef.child(userID).child("profile_pic.jpg")
                 
                
@@ -307,12 +312,9 @@ class MarketplaceViewController: UIViewController, UICollectionViewDelegate, UIC
                         } else {
                             if (data != nil){
                                 let imageToCache = UIImage(data:data!)
-                                self.userImageCache[imageName] = imageToCache
+                                NSCache.sharedInstance.setObject(imageToCache!, forKey: userID)
                                 dispatch_async(dispatch_get_main_queue(),{
                                     cell.profileImageButton.setImage(imageToCache!, forState: .Normal)
-                                    cell.profileImageButton.layer.cornerRadius =  cell.profileImageButton.bounds.size.width/2
-                                    cell.profileImageButton.clipsToBounds = true
-
                                 })
                             
                             }
@@ -327,7 +329,7 @@ class MarketplaceViewController: UIViewController, UICollectionViewDelegate, UIC
             
             
             else {
-                if bookNameArray.count > 0 {
+                if bookNameArray.count  > indexPath.row {
                     let bookNameToCache = bookNameArray[indexPath.row]
                     self.bookCache[imageName] = bookNameToCache
                     cell.bookName.text = bookNameToCache
@@ -339,7 +341,7 @@ class MarketplaceViewController: UIViewController, UICollectionViewDelegate, UIC
             }
             
             else {
-                if bookPriceArray.count > 0 {
+                if bookPriceArray.count > indexPath.row {
                     let bookPriceToCache = bookPriceArray[indexPath.row]
                     self.priceCache[imageName] = bookPriceToCache
                     cell.bookPrice.text = bookPriceToCache

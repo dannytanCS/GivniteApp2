@@ -21,6 +21,8 @@ class ViewController: UIViewController {
         
         //sign out
         //try! FIRAuth.auth()!.signOut()
+        
+        
         //FBSDKAccessToken.setCurrentAccessToken(nil)
         
         

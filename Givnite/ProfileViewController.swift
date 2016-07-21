@@ -190,7 +190,6 @@ class ProfileViewController: UIViewController, UITextViewDelegate,UICollectionVi
 
     
     
-    var imageCache = [String:UIImage] ()
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
@@ -203,8 +202,9 @@ class ProfileViewController: UIViewController, UITextViewDelegate,UICollectionVi
             cell.imageView.image = nil
             
         
-            if let image = imageCache[imageName]  {
+            if let image = NSCache.sharedInstance.objectForKey(imageName) as? UIImage{
                 cell.imageView.image = image
+                self.imageArray[indexPath.row] = image
             }
         
             else {
@@ -218,7 +218,7 @@ class ProfileViewController: UIViewController, UITextViewDelegate,UICollectionVi
                     } else {
                         if (data != nil){
                             let imageToCache = UIImage(data:data!)
-                            self.imageCache[imageName] = imageToCache
+                            NSCache.sharedInstance.setObject(imageToCache!, forKey: imageName)
                             //update to the correct cell
                             if (indexPath.row == num){
                                 dispatch_async(dispatch_get_main_queue(),{
@@ -261,7 +261,7 @@ class ProfileViewController: UIViewController, UITextViewDelegate,UICollectionVi
     }
     
     
-    var profileImageCache = NSCache()
+ 
     
     //gets and stores info from facebook
     func storesInfoFromFB(){
@@ -357,16 +357,25 @@ class ProfileViewController: UIViewController, UITextViewDelegate,UICollectionVi
             }
         })
     }
+
     
     
     func getProfileImage() {
         
-        let profilePicRef = storageRef.child(userID!+"/profile_pic.jpg")
-        profilePicRef.dataWithMaxSize(1 * 1024 * 1024) { (data, error) -> Void in
-            if (error != nil) {
-                // Uh-oh, an error occurred!
-            } else {
-               self.profilePicture.image = UIImage(data: data!)
+        if let image = NSCache.sharedInstance.objectForKey(userID!) as? UIImage{
+            self.profilePicture.image = image
+        }
+        
+        else {
+            let profilePicRef = storageRef.child(userID!+"/profile_pic.jpg")
+            profilePicRef.dataWithMaxSize(1 * 1024 * 1024) { (data, error) -> Void in
+                if (error != nil) {
+                    // Uh-oh, an error occurred!
+                } else {
+                    var cacheImage = UIImage(data: data!)
+                    self.profilePicture.image = cacheImage
+                    NSCache.sharedInstance.setObject(cacheImage!, forKey: self.userID!)
+                }
             }
         }
     }
