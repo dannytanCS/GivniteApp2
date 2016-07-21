@@ -52,18 +52,25 @@ class ItemViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
     
     
     
-    @IBOutlet weak var messageButton: UIButton!
-    
+    @IBOutlet weak var btnbtn: SpringButton!
     
     var userName: String?
     var otherUser: Bool = false
     var userID: String?
-    
+    func timefunc()
+    {
+        btnbtn.animation = "shake"
+        btnbtn.curve = "linear"
+        btnbtn.duration = 1.0
+        btnbtn.animate()
+    }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        var timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(ItemViewController.timefunc), userInfo: nil, repeats: true)
         
+
         self.userNameLabel.text = userName
     
         self.bookDescription.editable = false
@@ -78,16 +85,16 @@ class ItemViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
         self.bookName.delegate = self
         self.bookPrice.delegate = self
         self.bookDescription.delegate = self
-        self.messageButton.hidden = true
+        self.btnbtn.hidden = true
         
         
         if otherUser {
             settingButton.hidden = true
             cameraButton.hidden = true
             deleteButton.hidden = true
-            messageButton.hidden = false
+            btnbtn.hidden = false
             if user!.uid == userID {
-                self.messageButton.hidden = true
+                self.btnbtn.hidden = true
             }
         }
      

@@ -18,9 +18,6 @@ import FirebaseDatabase
 class ProfileViewController: UIViewController, UITextViewDelegate,UICollectionViewDelegate, UICollectionViewDataSource {
     
     @IBOutlet weak var collectionView: UICollectionView!
-    
-    
-    @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var profilePicture: UIImageView!
     
     @IBOutlet weak var name: UILabel!
@@ -30,6 +27,7 @@ class ProfileViewController: UIViewController, UITextViewDelegate,UICollectionVi
     
     @IBOutlet weak var graduationYearLabel: UILabel!
     
+    @IBOutlet weak var addButton: SpringButton!
     
     @IBOutlet weak var majorLabel: UILabel!
     
@@ -54,6 +52,18 @@ class ProfileViewController: UIViewController, UITextViewDelegate,UICollectionVi
 
     @IBOutlet weak var secondView: UIView!
     
+    func timefunc()
+    {
+        addButton.animation = "shake"
+        addButton.curve = "easeIn"
+        addButton.duration = 0.3
+        addButton.x = 0.2
+        addButton.force = 0.1
+        addButton.velocity = 0.1
+        addButton.damping = 1
+        addButton.animate()
+    }
+    
     override func viewDidLoad() {
         
         
@@ -69,6 +79,7 @@ class ProfileViewController: UIViewController, UITextViewDelegate,UICollectionVi
         }
     
         super.viewDidLoad()
+        var timer = NSTimer.scheduledTimerWithTimeInterval(3, target: self, selector: #selector(ItemViewController.timefunc), userInfo: nil, repeats: true)
         self.view.sendSubviewToBack(secondView)
         self.view.bringSubviewToFront(name)
         self.view.bringSubviewToFront(addButton)

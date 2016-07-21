@@ -19,7 +19,9 @@ class MarketItemViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var sellerName: UILabel!
-    @IBOutlet weak var messageButton: UIButton!
+    @IBOutlet weak var messageButton: SpringButton!
+    
+    
     
     let storageRef = FIRStorage.storage().referenceForURL("gs://givniteapp.appspot.com")
     let databaseRef = FIRDatabase.database().referenceFromURL("https://givniteapp.firebaseio.com/")
@@ -50,10 +52,21 @@ class MarketItemViewController: UIViewController {
     
     var maxImages: Int = 0
     
+    func timefunc()
+    {
+        messageButton.animation = "shake"
+        messageButton.curve = "linear"
+        messageButton.duration = 0.3
+        messageButton.x = 0.5
+        messageButton.force = 0.5
+        messageButton.velocity = 0.5
+        messageButton.damping = 0.5
+        messageButton.animate()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         
         if user?.uid == userID {
             messageButton.hidden = true
@@ -144,6 +157,11 @@ class MarketItemViewController: UIViewController {
         swipeLeft.direction = UISwipeGestureRecognizerDirection.Left
         self.view.addGestureRecognizer(swipeLeft)
     }
+    @IBAction func buttonPressed(sender: SpringButton) {
+        //var timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(ItemViewController.timefunc), userInfo: nil, repeats: true)
+        timefunc()
+    }
+    
 
     
     func swiped(gesture: UIGestureRecognizer) {

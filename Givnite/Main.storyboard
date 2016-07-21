@@ -451,7 +451,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G9V-6z-v8R">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G9V-6z-v8R" customClass="SpringButton" customModule="Givnite" customModuleProvider="target">
                                 <rect key="frame" x="157" y="599" width="80" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="F9Q-EM-L8c"/>
@@ -660,7 +660,7 @@
                     <navigationItem key="navigationItem" id="3dj-iM-ggT"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <outlet property="addButton" destination="G9V-6z-v8R" id="Bfi-CC-fCd"/>
+                        <outlet property="addButton" destination="G9V-6z-v8R" id="vW8-yi-9cX"/>
                         <outlet property="bioTextView" destination="ufM-hV-GjE" id="aRd-Qd-w3P"/>
                         <outlet property="changeBioButton" destination="eJ3-K9-LLP" id="1p6-Da-tXH"/>
                         <outlet property="collectionView" destination="ZAK-qB-4E7" id="ABK-Kz-mjY"/>
@@ -1047,7 +1047,7 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JHV-JW-s2L">
                                 <rect key="frame" x="33" y="91" width="308" height="308"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QPC-vf-230">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QPC-vf-230" customClass="SpringButton" customModule="Givnite" customModuleProvider="target">
                                 <rect key="frame" x="152" y="596" width="71" height="71"/>
                                 <state key="normal" title="Button" image="Message"/>
                             </button>
@@ -1085,11 +1085,11 @@
                         <outlet property="bookDescription" destination="y25-tX-mWW" id="DH0-lY-8F2"/>
                         <outlet property="bookName" destination="uYU-Eu-hX8" id="Bak-hi-y5g"/>
                         <outlet property="bookPrice" destination="dnd-Gt-xgE" id="sZy-d9-Z3J"/>
+                        <outlet property="btnbtn" destination="QPC-vf-230" id="hBu-sT-wtd"/>
                         <outlet property="cameraButton" destination="Twc-MH-p2u" id="ASK-Xj-nPi"/>
                         <outlet property="deleteButton" destination="AFs-I4-dNS" id="MN6-5N-wuT"/>
                         <outlet property="doneButton" destination="jc1-i4-MzX" id="qsT-4W-k4j"/>
                         <outlet property="imageView" destination="JHV-JW-s2L" id="J3N-xK-TgD"/>
-                        <outlet property="messageButton" destination="QPC-vf-230" id="8GV-59-1RU"/>
                         <outlet property="pageControl" destination="e3M-AC-fMY" id="7lH-hA-lS7"/>
                         <outlet property="settingButton" destination="J9l-si-ZLL" id="NK9-Tk-TfL"/>
                         <outlet property="userNameLabel" destination="LF6-Cb-Uct" id="HqX-lI-fxn"/>
@@ -1411,13 +1411,19 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="78V-b6-JGw">
                                 <rect key="frame" x="33" y="91" width="308" height="308"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rKm-p3-FHc">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rKm-p3-FHc" customClass="SpringButton" customModule="Givnite" customModuleProvider="target">
                                 <rect key="frame" x="158" y="608" width="59" height="59"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="59" id="JmJ-x3-fC9"/>
                                     <constraint firstAttribute="height" constant="59" id="x8V-pk-0WL"/>
                                 </constraints>
                                 <state key="normal" title="Button" image="Message"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="autostart" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="buttonPressed:" destination="Tnf-I5-fWN" eventType="touchUpInside" id="aXU-6d-WG7"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1447,7 +1453,7 @@
                         <outlet property="bookName" destination="9z7-5X-Bho" id="Ldf-XF-nVa"/>
                         <outlet property="bookPrice" destination="ipS-LB-qwy" id="TzK-z1-0pk"/>
                         <outlet property="imageView" destination="78V-b6-JGw" id="i8W-Jd-Zo2"/>
-                        <outlet property="messageButton" destination="rKm-p3-FHc" id="VkK-qm-BsC"/>
+                        <outlet property="messageButton" destination="rKm-p3-FHc" id="gnG-Wm-E8e"/>
                         <outlet property="pageControl" destination="Avh-1M-Vks" id="Lrw-0W-bdI"/>
                         <outlet property="sellerName" destination="5gs-Dx-HK3" id="ocg-RU-h5U"/>
                     </connections>
